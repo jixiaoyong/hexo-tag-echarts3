@@ -7,7 +7,7 @@ Insert [Echarts](http://echarts.baidu.com) in Hexo by using tags.
 ## Install 
 
 ```bash
-$ npm install hexo-tag-echarts --save
+npm install git+https://github.com/jixiaoyong/hexo-tag-echarts3.git --save 
 ```
 
 ## Usage
