@@ -2,10 +2,23 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        const isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        var myChart = echarts.init(document.getElementById('<%- id %>'),isDarkTheme ? "dark" : "light");
+        var isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var id = '<%- id %>'
+        var myChart = echarts.init(document.getElementById(id),isDarkTheme ? "dark" : "light");
         // 指定图表的配置项和数据
         var option = <%= option %>
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+
+
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+          var  isDarkTheme = e.matches;
+           // 销毁旧的echarts实例
+           myChart.dispose();
+           // 创建新的echarts实例
+          myChart = echarts.init(document.getElementById(id), isDarkTheme ? "dark" : "light");
+          // 使用新的主题和配置项显示图表
+          myChart.setOption(option);
+         });
+
 </script>
